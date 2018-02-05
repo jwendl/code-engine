@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CodeEngine.CSharp\CodeEngine.CSharp.csproj" />
+    <ProjectReference Include="..\CodeEngine.FSharp\CodeEngine.FSharp.csproj" />
+    <ProjectReference Include="..\CodeEngine.JavaScript\CodeEngine.JavaScript.csproj" />
+    <ProjectReference Include="..\CodeEngine.Python\CodeEngine.Python.csproj" />
+  </ItemGroup>
+
+</Project>
