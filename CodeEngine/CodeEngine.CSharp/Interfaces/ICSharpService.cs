@@ -5,6 +5,6 @@ namespace CodeEngine.CSharp.Interfaces
 {
     public interface ICSharpService<T>
     {
-        Task<CSharpCodeResult<T>> CompileAsync(string code);
+        Task<CSharpCodeResult<T>> ExecuteAsync(string code);
     }
 }

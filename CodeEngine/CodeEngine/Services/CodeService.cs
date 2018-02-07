@@ -1,4 +1,5 @@
 ﻿using CodeEngine.CSharp.Interfaces;
+using CodeEngine.FSharp.Interfaces;
 using CodeEngine.Interfaces;
 using CodeEngine.Models;
 using System;
@@ -11,12 +12,14 @@ namespace CodeEngine.Services
         : ICodeService<TInput, TOutput>
     {
         readonly IFileService fileService;
-        readonly ICSharpService<TOutput> csharpService;
+        readonly ICSharpService<TOutput> cSharpService;
+        readonly IFSharpService<TOutput> fSharpService;
 
-        public CodeService(IFileService fileService, ICSharpService<TOutput> csharpService)
+        public CodeService(IFileService fileService, ICSharpService<TOutput> cSharpService, IFSharpService<TOutput> fSharpService)
         {
             this.fileService = fileService;
-            this.csharpService = csharpService;
+            this.cSharpService = cSharpService;
+            this.fSharpService = fSharpService;
         }
 
         public async Task<CodeServiceResult<TOutput>> CompileAsync(TInput location)
@@ -24,7 +27,7 @@ namespace CodeEngine.Services
             var fileServiceResult = await fileService.FetchFileContentsAsync(location);
             if (fileServiceResult.FileExtension == ".cscript")
             {
-                var codeResult = await csharpService.CompileAsync(fileServiceResult.FileContents);
+                var codeResult = await cSharpService.ExecuteAsync(fileServiceResult.FileContents);
                 var exceptions = new List<Exception>();
                 if (codeResult.Exception != null)
                 {
@@ -35,6 +38,20 @@ namespace CodeEngine.Services
                 {
                     Exceptions = exceptions,
                     ReturnValue = codeResult.ReturnValue,
+                };
+            }
+            else if (fileServiceResult.FileExtension == ".fscript")
+            {
+                var codeResult = await fSharpService.ExecuteAsync(fileServiceResult.FileContents);
+                //var exceptions = new List<Exception>();
+                //if (codeResult.Exception != null)
+                //{
+                //    exceptions.Add(codeResult.Exception);
+                //}
+
+                return new CodeServiceResult<TOutput>()
+                {
+                    ReturnValue = codeResult,
                 };
             }
 

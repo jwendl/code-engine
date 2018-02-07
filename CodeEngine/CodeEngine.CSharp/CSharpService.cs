@@ -8,7 +8,7 @@ namespace CodeEngine.CSharp
     public class CSharpService<T>
         : ICSharpService<T>
     {
-        public async Task<CSharpCodeResult<T>> CompileAsync(string code)
+        public async Task<CSharpCodeResult<T>> ExecuteAsync(string code)
         {
             var scriptState = await CSharpScript.RunAsync<T>(code);
             return new CSharpCodeResult<T>()
