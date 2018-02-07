@@ -67,5 +67,17 @@ namespace CodeEngine.IntegrationTest
             }
             Console.WriteLine($"Return value is {result.ReturnValue}");
         }
+
+        private static async Task JavaScript(ServiceProvider serviceProvider)
+        {
+            var codeService = serviceProvider.GetRequiredService<ICodeService<FileInfo, int>>();
+            var result = await codeService.CompileAsync(new FileInfo("test.pyscript"));
+
+            foreach (var exception in result.Exceptions)
+            {
+                Console.WriteLine($"Error: {exception.Message}");
+            }
+            Console.WriteLine($"Return value is {result.ReturnValue}");
+        }
     }
 }
