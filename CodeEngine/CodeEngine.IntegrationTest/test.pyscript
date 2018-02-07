@@ -1,0 +1,4 @@
+﻿def PrintMessage():
+	print 'This is a message!'
+
+PrintMessage()

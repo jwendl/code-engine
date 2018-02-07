@@ -3,6 +3,8 @@ using CodeEngine.CSharp.Interfaces;
 using CodeEngine.FSharp;
 using CodeEngine.FSharp.Interfaces;
 using CodeEngine.Interfaces;
+using CodeEngine.Python;
+using CodeEngine.Python.Interfaces;
 using CodeEngine.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -19,11 +21,13 @@ namespace CodeEngine.IntegrationTest
             serviceCollection.AddScoped<IFileService, FileService>();
             serviceCollection.AddScoped<ICSharpService<int>, CSharpService<int>>();
             serviceCollection.AddScoped<IFSharpService<int>, FSharpService<int>>();
+            serviceCollection.AddScoped<IPythonService<int>, PythonService<int>>();
             serviceCollection.AddScoped<ICodeService<FileInfo, int>, CodeService<FileInfo, int>>();
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
             await CSharp(serviceProvider);
-            await FSharp(serviceProvider);
+            //await FSharp(serviceProvider);
+            await Python(serviceProvider);
 
             Console.ReadKey();
         }
@@ -44,6 +48,18 @@ namespace CodeEngine.IntegrationTest
         {
             var codeService = serviceProvider.GetRequiredService<ICodeService<FileInfo, int>>();
             var result = await codeService.CompileAsync(new FileInfo("test.fscript"));
+
+            foreach (var exception in result.Exceptions)
+            {
+                Console.WriteLine($"Error: {exception.Message}");
+            }
+            Console.WriteLine($"Return value is {result.ReturnValue}");
+        }
+
+        private static async Task Python(ServiceProvider serviceProvider)
+        {
+            var codeService = serviceProvider.GetRequiredService<ICodeService<FileInfo, int>>();
+            var result = await codeService.CompileAsync(new FileInfo("test.pyscript"));
 
             foreach (var exception in result.Exceptions)
             {

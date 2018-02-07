@@ -11,13 +11,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeEngine.FSharp", "CodeEn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeEngine.CSharp", "CodeEngine.CSharp\CodeEngine.CSharp.csproj", "{F90AEA1E-C3B0-4D8B-BB5E-AE5A606A6428}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeEngine.Python", "CodeEngine.Python\CodeEngine.Python.csproj", "{5EC3AFDD-E296-48BD-ABCE-5A78D49CEBD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeEngine.Python", "CodeEngine.Python\CodeEngine.Python.csproj", "{5EC3AFDD-E296-48BD-ABCE-5A78D49CEBD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeEngine.JavaScript", "CodeEngine.JavaScript\CodeEngine.JavaScript.csproj", "{073F621D-BBFB-4FFB-B9C9-A4F46C4D7D7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeEngine.JavaScript", "CodeEngine.JavaScript\CodeEngine.JavaScript.csproj", "{073F621D-BBFB-4FFB-B9C9-A4F46C4D7D7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeEngine.Tests", "Tests\CodeEngine.Tests\CodeEngine.Tests.csproj", "{6422BB6F-87B7-466E-9021-AE8E823B4AB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeEngine.Tests", "Tests\CodeEngine.Tests\CodeEngine.Tests.csproj", "{6422BB6F-87B7-466E-9021-AE8E823B4AB6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{706B1D09-392C-47C4-BACF-4C2F7450DE25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{5C52A500-9B3C-4DA1-8B69-BF9CC7DA2FF7}"
+	ProjectSection(SolutionItems) = preProject
+		Libraries\IronPython.dll = Libraries\IronPython.dll
+		Libraries\Microsoft.Scripting.dll = Libraries\Microsoft.Scripting.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

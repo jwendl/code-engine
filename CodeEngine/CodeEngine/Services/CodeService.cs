@@ -2,6 +2,7 @@
 using CodeEngine.FSharp.Interfaces;
 using CodeEngine.Interfaces;
 using CodeEngine.Models;
+using CodeEngine.Python.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,12 +15,14 @@ namespace CodeEngine.Services
         readonly IFileService fileService;
         readonly ICSharpService<TOutput> cSharpService;
         readonly IFSharpService<TOutput> fSharpService;
+        readonly IPythonService<TOutput> pythonService;
 
-        public CodeService(IFileService fileService, ICSharpService<TOutput> cSharpService, IFSharpService<TOutput> fSharpService)
+        public CodeService(IFileService fileService, ICSharpService<TOutput> cSharpService, IFSharpService<TOutput> fSharpService, IPythonService<TOutput> pythonService)
         {
             this.fileService = fileService;
             this.cSharpService = cSharpService;
             this.fSharpService = fSharpService;
+            this.pythonService = pythonService;
         }
 
         public async Task<CodeServiceResult<TOutput>> CompileAsync(TInput location)
@@ -43,12 +46,14 @@ namespace CodeEngine.Services
             else if (fileServiceResult.FileExtension == ".fscript")
             {
                 var codeResult = await fSharpService.ExecuteAsync(fileServiceResult.FileContents);
-                //var exceptions = new List<Exception>();
-                //if (codeResult.Exception != null)
-                //{
-                //    exceptions.Add(codeResult.Exception);
-                //}
-
+                return new CodeServiceResult<TOutput>()
+                {
+                    ReturnValue = codeResult,
+                };
+            }
+            else if (fileServiceResult.FileExtension == ".pyscript")
+            {
+                var codeResult = await pythonService.ExecuteAsync(fileServiceResult.FileContents);
                 return new CodeServiceResult<TOutput>()
                 {
                     ReturnValue = codeResult,
