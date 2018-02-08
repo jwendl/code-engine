@@ -28,8 +28,9 @@ namespace CodeEngine.FSharp
             var outputStream = new StringWriter(outputStringBuilder);
             var errorStream = new StringWriter(errorStringBuilder);
             var fSharpOptions = new FSharpOption<bool>(true);
+            var resolverOptions = new FSharpOption<Resolver>(default(Resolver));
             var sessionConfiguration = FsiEvaluationSession.GetDefaultConfiguration();
-            var evaluationSession = FsiEvaluationSession.Create(sessionConfiguration, arguments, stringReader, outputStream, errorStream, fSharpOptions, default(FSharpOption<Resolver>));
+            var evaluationSession = FsiEvaluationSession.Create(sessionConfiguration, arguments, stringReader, outputStream, errorStream, fSharpOptions, resolverOptions);
 
             var result = evaluationSession.EvalExpression(code);
             var fSharpValue = await Task.FromResult(result.Value);

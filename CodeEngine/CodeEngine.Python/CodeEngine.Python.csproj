@@ -12,8 +12,20 @@
     <Reference Include="IronPython">
       <HintPath>..\Libraries\IronPython.dll</HintPath>
     </Reference>
+    <Reference Include="IronPython.Modules">
+      <HintPath>..\Libraries\IronPython.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic">
+      <HintPath>..\Libraries\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Scripting">
       <HintPath>..\Libraries\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.CodeDom">
+      <HintPath>..\Libraries\System.CodeDom.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages">
+      <HintPath>..\Libraries\System.Text.Encoding.CodePages.dll</HintPath>
     </Reference>
   </ItemGroup>
 

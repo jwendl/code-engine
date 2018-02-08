@@ -22,7 +22,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{5C52A500-9B3C-4DA1-8B69-BF9CC7DA2FF7}"
 	ProjectSection(SolutionItems) = preProject
 		Libraries\IronPython.dll = Libraries\IronPython.dll
+		Libraries\IronPython.Modules.dll = Libraries\IronPython.Modules.dll
+		Libraries\Microsoft.Dynamic.dll = Libraries\Microsoft.Dynamic.dll
 		Libraries\Microsoft.Scripting.dll = Libraries\Microsoft.Scripting.dll
+		Libraries\System.CodeDom.dll = Libraries\System.CodeDom.dll
+		Libraries\System.Text.Encoding.CodePages.dll = Libraries\System.Text.Encoding.CodePages.dll
 	EndProjectSection
 EndProject
 Global
