@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace CodeEngine.CSharp.Interfaces
+namespace CodeEngine.JavaScript.Interfaces
 {
-    public interface ICSharpService<T>
+    public interface IJavaScriptService<T>
     {
         Task<T> ExecuteAsync(string code);
     }
