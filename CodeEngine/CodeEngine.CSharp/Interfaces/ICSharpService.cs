@@ -4,6 +4,6 @@ namespace CodeEngine.CSharp.Interfaces
 {
     public interface ICSharpService<T>
     {
-        Task<T> ExecuteAsync(string code);
+        Task<T> ExecuteAsync(string code, string deviceState);
     }
 }

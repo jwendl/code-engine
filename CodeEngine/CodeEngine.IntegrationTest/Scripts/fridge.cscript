@@ -1,0 +1,16 @@
+﻿class MinMax
+{
+	[JsonProperty("min")]
+	public double Minimum { get; set; }
+	[JsonProperty("max")]
+	public double Maximum { get; set; }
+}
+
+class Fridge
+{
+	public MinMax Temperature { get; set; }
+	public MinMax Humidity { get; set; }
+}
+
+var deviceDefinition = JsonConvert.DeserializeObject<Fridge>(DeviceTypeDefinition);
+return deviceDefinition.Temperature.Minimum;

@@ -20,33 +20,34 @@ namespace CodeEngine.Services
         public CodeService(IFileService fileService, ICSharpService<TOutput> cSharpService, IFSharpService<TOutput> fSharpService, IPythonService<TOutput> pythonService, IJavaScriptService<TOutput> javaScriptService)
         {
             this.fileService = fileService;
-            this.cSharpService = cSharpService;
+            this.cSharpService = cSharpService; 
             this.fSharpService = fSharpService;
             this.pythonService = pythonService;
             this.javaScriptService = javaScriptService;
         }
 
-        public async Task<TOutput> CompileAsync(TInput location)
+        public async Task<TOutput> CompileAsync(TInput scriptLocation, TInput definitionLocation)
         {
-            var fileServiceResult = await fileService.FetchFileContentsAsync(location);
-            if (fileServiceResult.FileExtension == ".cscript")
+            var scriptFileResult = await fileService.FetchFileContentsAsync(scriptLocation);
+            var definitionFileResult = await fileService.FetchFileContentsAsync(definitionLocation);
+            if (scriptFileResult.FileExtension == ".cscript")
             {
-                return await cSharpService.ExecuteAsync(fileServiceResult.FileContents);
+                return await cSharpService.ExecuteAsync(scriptFileResult.FileContents, definitionFileResult.FileContents);
             }
-            else if (fileServiceResult.FileExtension == ".fscript")
+            else if (scriptFileResult.FileExtension == ".fscript")
             {
-                return await fSharpService.ExecuteAsync(fileServiceResult.FileContents);
+                return await fSharpService.ExecuteAsync(scriptFileResult.FileContents);
             }
-            else if (fileServiceResult.FileExtension == ".pyscript")
+            else if (scriptFileResult.FileExtension == ".pyscript")
             {
-                return await pythonService.ExecuteAsync(fileServiceResult.FileContents);
+                return await pythonService.ExecuteAsync(scriptFileResult.FileContents);
             }
-            else if (fileServiceResult.FileExtension == ".jscript")
+            else if (scriptFileResult.FileExtension == ".jscript")
             {
-                return await javaScriptService.ExecuteAsync(fileServiceResult.FileContents);
+                return await javaScriptService.ExecuteAsync(scriptFileResult.FileContents);
             }
 
-            throw new InvalidOperationException($"FileExtension from input location {location.ToString()} not handled.");
+            throw new InvalidOperationException($"FileExtension from input location {scriptLocation.ToString()} not handled.");
         }
     }
 }

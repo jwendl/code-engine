@@ -10,11 +10,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DeviceInfo\fridge.json" />
+    <None Remove="DeviceInfo\test.json" />
+    <None Remove="Scripts\fridge.cscript" />
     <None Remove="test.cscript" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="test.cscript">
+    <Content Include="DeviceInfo\test.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DeviceInfo\fridge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\fridge.cscript">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\test.cscript">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
