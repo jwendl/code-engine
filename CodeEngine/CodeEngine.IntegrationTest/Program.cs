@@ -21,11 +21,11 @@ namespace CodeEngine.IntegrationTest
         {
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddScoped<IFileService, FileService>();
-            serviceCollection.AddScoped<ICSharpService<double>, CSharpService<double>>();
-            serviceCollection.AddScoped<IFSharpService<double>, FSharpService<double>>();
-            serviceCollection.AddScoped<IPythonService<double>, PythonService<double>>();
-            serviceCollection.AddScoped<IJavaScriptService<double>, JavaScriptService<double>>();
-            serviceCollection.AddScoped<ICodeService<FileInfo, double>, CodeService<FileInfo, double>>();
+            serviceCollection.AddScoped<ICSharpService<string>, CSharpService<string>>();
+            serviceCollection.AddScoped<IFSharpService<string>, FSharpService<string>>();
+            serviceCollection.AddScoped<IPythonService<string>, PythonService<string>>();
+            serviceCollection.AddScoped<IJavaScriptService<string>, JavaScriptService<string>>();
+            serviceCollection.AddScoped<ICodeService<FileInfo, string>, CodeService<FileInfo, string>>();
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
             await Fridge(serviceProvider);
@@ -39,7 +39,7 @@ namespace CodeEngine.IntegrationTest
 
         private static async Task Fridge(ServiceProvider serviceProvider)
         {
-            var codeService = serviceProvider.GetRequiredService<ICodeService<FileInfo, double>>();
+            var codeService = serviceProvider.GetRequiredService<ICodeService<FileInfo, string>>();
             var result = await codeService.CompileAsync(new FileInfo(Path.Combine("scripts", "fridge.cscript")), new FileInfo(Path.Combine("DeviceInfo", "fridge.json")));
             Console.WriteLine($"CSharp return value is {result}");
         }

@@ -13,10 +13,11 @@ namespace CodeEngine.CSharp
         public async Task<T> ExecuteAsync(string code, string deviceTypeDefinition)
         {
             var scriptOptions = ScriptOptions.Default
-                .WithImports("Newtonsoft.Json", "CodeEngine.CSharp")
+                .WithImports("System", "Newtonsoft.Json", "CodeEngine.CSharp")
                 .WithReferences(typeof(JsonConvert).Assembly, typeof(Globals).Assembly);
 
-            var scriptState = await CSharpScript.RunAsync<T>(code, scriptOptions, globals: new Globals() { DeviceTypeDefinition = deviceTypeDefinition });
+            var deviceState = @"{ }";
+            var scriptState = await CSharpScript.RunAsync<T>(code, scriptOptions, globals: new Globals() { DeviceTypeDefinition = deviceTypeDefinition, DeviceState = deviceState });
             if (scriptState.Exception != null)
             {
                 throw scriptState.Exception;
