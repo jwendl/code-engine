@@ -40,7 +40,7 @@ namespace CodeEngine.IntegrationTest
         private static async Task Fridge(ServiceProvider serviceProvider)
         {
             var codeService = serviceProvider.GetRequiredService<ICodeService<FileInfo, string>>();
-            var result = await codeService.CompileAsync(new FileInfo(Path.Combine("scripts", "fridge.cscript")), new FileInfo(Path.Combine("DeviceInfo", "fridge.json")));
+            var result = await codeService.CompileAsync(new FileInfo(Path.Combine("Scripts", "fridge.cscript")), new FileInfo(Path.Combine("DeviceInfo", "fridge.json")));
             Console.WriteLine($"CSharp return value is {result}");
         }
 
