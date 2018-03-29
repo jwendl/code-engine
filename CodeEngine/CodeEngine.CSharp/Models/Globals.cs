@@ -2,6 +2,6 @@
 {
     public class Globals
     {
-        public string DeviceState { get; set; }
+        public string InitialState { get; set; }
     }
 }

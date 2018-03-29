@@ -32,7 +32,7 @@ namespace CodeEngine.IntegrationTest
             //await CSharp(serviceProvider);
             //await FSharp(serviceProvider);
             //await Python(serviceProvider);
-            //await JavaScript(serviceProvider);
+            await JavaScript(serviceProvider);
 
             Console.ReadKey();
         }
@@ -67,7 +67,7 @@ namespace CodeEngine.IntegrationTest
 
         private static async Task JavaScript(ServiceProvider serviceProvider)
         {
-            var codeService = serviceProvider.GetRequiredService<ICodeService<FileInfo, int>>();
+            var codeService = serviceProvider.GetRequiredService<ICodeService<FileInfo, string>>();
             var result = await codeService.CompileAsync(new FileInfo(Path.Combine("scripts", "test.jscript")), new FileInfo(Path.Combine("DeviceInfo", "test.json")));
             Console.WriteLine($"JavaScript return value is {result}");
         }
