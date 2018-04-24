@@ -27,10 +27,12 @@ namespace CodeEngine.CSharp.Tests
 }";
 
             var code = $@"
-return ""{json}""
+var initialState = InitialState;
+return initialState;
 ";
 
             var result = await csharpService.ExecuteAsync(code, json);
+            Assert.Equal(json, result);
         }
     }
 }
