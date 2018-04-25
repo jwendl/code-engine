@@ -2,6 +2,6 @@
 {
     public class Globals
     {
-        public string InitialState { get; set; }
+        public string GlobalState { get; set; }
     }
 }

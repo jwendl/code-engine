@@ -27,8 +27,7 @@ namespace CodeEngine.CSharp.Tests
 }";
 
             var code = $@"
-var initialState = InitialState;
-return initialState;
+return GlobalState;
 ";
 
             var result = await csharpService.ExecuteAsync(code, json);
