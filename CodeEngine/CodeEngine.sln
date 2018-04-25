@@ -23,7 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 		Libraries\System.Text.Encoding.CodePages.dll = Libraries\System.Text.Encoding.CodePages.dll
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeEngine.CSharp.Tests", "Tests\CodeEngine.CSharp.Tests\CodeEngine.CSharp.Tests.csproj", "{F2E2C8C4-1D41-4472-9477-27506FC69E65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeEngine.CSharp.Tests", "Tests\CodeEngine.CSharp.Tests\CodeEngine.CSharp.Tests.csproj", "{F2E2C8C4-1D41-4472-9477-27506FC69E65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeEngine.FSharp.Tests", "Tests\CodeEngine.FSharp.Tests\CodeEngine.FSharp.Tests.csproj", "{2E940D83-C2C2-4376-AB29-774C74FDED87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,12 +53,17 @@ Global
 		{F2E2C8C4-1D41-4472-9477-27506FC69E65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2E2C8C4-1D41-4472-9477-27506FC69E65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2E2C8C4-1D41-4472-9477-27506FC69E65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E940D83-C2C2-4376-AB29-774C74FDED87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E940D83-C2C2-4376-AB29-774C74FDED87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E940D83-C2C2-4376-AB29-774C74FDED87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E940D83-C2C2-4376-AB29-774C74FDED87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F2E2C8C4-1D41-4472-9477-27506FC69E65} = {706B1D09-392C-47C4-BACF-4C2F7450DE25}
+		{2E940D83-C2C2-4376-AB29-774C74FDED87} = {706B1D09-392C-47C4-BACF-4C2F7450DE25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {99B23401-0E7A-4724-A4A1-6A3D4B39E766}

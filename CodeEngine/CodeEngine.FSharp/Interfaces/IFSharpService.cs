@@ -4,6 +4,6 @@ namespace CodeEngine.FSharp.Interfaces
 {
     public interface IFSharpService<T>
     {
-        Task<T> ExecuteAsync(string code);
+        Task<T> ExecuteAsync(string code, string globalState);
     }
 }

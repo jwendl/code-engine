@@ -12,7 +12,7 @@ namespace CodeEngine.FSharp
     public class FSharpService<T>
         : IFSharpService<T>
     {
-        public async Task<T> ExecuteAsync(string code)
+        public async Task<T> ExecuteAsync(string code, string globalState)
         {
             var arguments = new List<string>()
             {
@@ -22,7 +22,7 @@ namespace CodeEngine.FSharp
                 "--gui-"
             }.ToArray();
 
-            var stringReader = new StringReader("");
+            var stringReader = new StringReader(globalState);
             var outputStringBuilder = new StringBuilder();
             var errorStringBuilder = new StringBuilder();
             var outputStream = new StringWriter(outputStringBuilder);
