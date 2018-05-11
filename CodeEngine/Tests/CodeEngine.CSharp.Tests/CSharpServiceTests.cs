@@ -30,7 +30,9 @@ namespace CodeEngine.CSharp.Tests
 return GlobalState;
 ";
 
-            var result = await csharpService.ExecuteAsync(code, json);
+            csharpService.Compile(code);
+            var result = await csharpService.ExecuteAsync(json);
+
             Assert.Equal(json, result);
         }
     }

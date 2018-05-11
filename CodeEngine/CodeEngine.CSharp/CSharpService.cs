@@ -12,31 +12,39 @@ namespace CodeEngine.CSharp
     public class CSharpService<T>
         : ICSharpService<T>
     {
-        public async Task<T> ExecuteAsync(string code, string globalState)
-        {
-            var imports = new List<string>() { "System", "Newtonsoft.Json", "CodeEngine.CSharp" };
-            return await ExecuteAsync(code, globalState, imports);
-        }
+        private Script<T> script;
 
-        public async Task<T> ExecuteAsync(string code, string globalState, IEnumerable<string> imports)
-        {
-            var types = new List<Assembly>() { typeof(JsonConvert).Assembly, typeof(Globals).Assembly };
-            return await ExecuteAsync(code, globalState, imports, types);
-        }
-
-        public async Task<T> ExecuteAsync(string code, string globalState, IEnumerable<string> imports, IEnumerable<Assembly> types)
+        public void Compile(string code)
         {
             var scriptOptions = ScriptOptions.Default
-                .WithImports("System", "Newtonsoft.Json", "CodeEngine.CSharp")
+                .WithImports("System", "Newtonsoft.Json")
                 .WithReferences(typeof(JsonConvert).Assembly, typeof(Globals).Assembly);
 
-            var scriptState = await CSharpScript.RunAsync<T>(code, scriptOptions, globals: new Globals() { GlobalState = globalState });
-            if (scriptState.Exception != null)
+            script = CSharpScript.Create<T>(code, scriptOptions, typeof(Globals));
+            script.Compile();
+        }
+
+        public async Task<T> ExecuteAsync(string globalState)
+        {
+            var imports = new List<string>() { "System", "Newtonsoft.Json" };
+            return await ExecuteAsync(globalState, imports);
+        }
+
+        public async Task<T> ExecuteAsync(string globalState, IEnumerable<string> imports)
+        {
+            var types = new List<Assembly>() { typeof(JsonConvert).Assembly, typeof(Globals).Assembly };
+            return await ExecuteAsync(globalState, imports, types);
+        }
+
+        public async Task<T> ExecuteAsync(string globalState, IEnumerable<string> imports, IEnumerable<Assembly> types)
+        {
+            var result = await script.RunAsync(new Globals() { GlobalState = globalState });
+            if (result.Exception != null)
             {
-                throw scriptState.Exception;
+                throw result.Exception;
             }
 
-            return scriptState.ReturnValue;
+            return result.ReturnValue;
         }
     }
 }

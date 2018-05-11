@@ -6,10 +6,12 @@ namespace CodeEngine.CSharp.Interfaces
 {
     public interface ICSharpService<T>
     {
-        Task<T> ExecuteAsync(string code, string deviceState);
+        void Compile(string code);
 
-        Task<T> ExecuteAsync(string code, string initialState, IEnumerable<string> imports);
+        Task<T> ExecuteAsync(string deviceState);
 
-        Task<T> ExecuteAsync(string code, string initialState, IEnumerable<string> imports, IEnumerable<Assembly> types);
+        Task<T> ExecuteAsync(string initialState, IEnumerable<string> imports);
+
+        Task<T> ExecuteAsync(string initialState, IEnumerable<string> imports, IEnumerable<Assembly> types);
     }
 }
